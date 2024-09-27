@@ -7,8 +7,6 @@ import 'layout/shop_app/shop_layout.dart';
 import 'modules/shop_app/login/shop_login_screen.dart';
 import 'modules/shop_app/on_boarding/on_boarding_screen.dart';
 import 'shared/bloc_observer.dart';
-import 'shared/cubit/cubit.dart';
-import 'shared/cubit/states.dart';
 import 'shared/network/local/cache_helper.dart';
 import 'shared/network/remote/dio_helper.dart';
 import 'shared/styles/themes.dart';
@@ -25,13 +23,11 @@ void main() async {
 
   Widget widget;
 
-  if(onBoarding == true && token == null){
+  if (onBoarding == true && token == null) {
     widget = ShopLoginScreen();
-  }
-  else if(token != null){
+  } else if (token != null) {
     widget = ShopLayout();
-  }
-  else{
+  } else {
     widget = OnBoardingScreen();
   }
 
@@ -56,31 +52,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (BuildContext context) => AppCubit()..changeAppMode(),
-        ),
-        BlocProvider(
-          create: (BuildContext context) => ShopCubit()
-            ..getHomeData()
-            ..getCategoriesData()
-            ..getFavoritesData()
-            ..getUserData(),
-        ),
-      ],
-      child: BlocConsumer<AppCubit, AppStates>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            theme: lightTheme,
-            darkTheme: darkTheme,
-            themeMode:
-            AppCubit.get(context).isDark ? ThemeMode.light : ThemeMode.light,
-            home: startWidget,
-          );
-        },
+    return BlocProvider(
+      create: (BuildContext context) => ShopCubit()
+        ..getHomeData()
+        ..getCategoriesData()
+        ..getFavoritesData()
+        ..getUserData(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: lightTheme,
+        darkTheme: darkTheme,
+        themeMode: ThemeMode.light,
+        home: startWidget,
       ),
     );
   }
