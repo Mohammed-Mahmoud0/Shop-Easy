@@ -12,10 +12,14 @@ import '../register/shop_register_screen.dart';
 import 'cubit/cubit.dart';
 import 'cubit/states.dart';
 
+class ShopLoginScreen extends StatefulWidget {
+  const ShopLoginScreen({super.key});
 
-class ShopLoginScreen extends StatelessWidget {
-  ShopLoginScreen({super.key});
+  @override
+  State<ShopLoginScreen> createState() => _ShopLoginScreenState();
+}
 
+class _ShopLoginScreenState extends State<ShopLoginScreen> {
   var formKey = GlobalKey<FormState>();
 
   @override
@@ -44,20 +48,19 @@ class ShopLoginScreen extends StatelessWidget {
               });
               showToast(
                 text: state.loginModel.message!,
-                state: ToastStates.SUCCESS,
+                state: ToastStates.success,
               );
             } else {
               print(state.loginModel.message!);
               showToast(
                 text: state.loginModel.message!,
-                state: ToastStates.ERROR,
+                state: ToastStates.error,
               );
             }
           } else if (state is ShopLoginErrorState) {
-
             showToast(
               text: 'Incorrect Email or Password.',
-              state: ToastStates.ERROR,
+              state: ToastStates.error,
             );
           }
         },
@@ -77,13 +80,13 @@ class ShopLoginScreen extends StatelessWidget {
                           'LOGIN',
                           style: Theme.of(context)
                               .textTheme
-                              .headline4!
+                              .bodyLarge!
                               .copyWith(color: Colors.black),
                         ),
                         Text(
                           'login now to browse our hot offers',
                           style:
-                              Theme.of(context).textTheme.bodyText1!.copyWith(
+                              Theme.of(context).textTheme.bodyLarge!.copyWith(
                                     color: Colors.grey,
                                   ),
                         ),
@@ -112,7 +115,7 @@ class ShopLoginScreen extends StatelessWidget {
                           type: TextInputType.visiblePassword,
                           suffix: ShopLoginCubit.get(context).suffix,
                           onSubmit: (value) {
-                            if (formKey!.currentState!.validate()) {
+                            if (formKey.currentState!.validate()) {
                               ShopLoginCubit.get(context).userLogin(
                                 email: emailController.text,
                                 password: passwordController.text,

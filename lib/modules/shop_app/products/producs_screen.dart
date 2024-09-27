@@ -12,7 +12,6 @@ import '../../../models/shop_app/home_model.dart';
 import '../../../shared/components/components.dart';
 import '../../../shared/styles/colors.dart';
 
-
 class ProductsScreen extends StatelessWidget {
   const ProductsScreen({super.key});
 
@@ -24,12 +23,12 @@ class ProductsScreen extends StatelessWidget {
           if (!state.model.status!) {
             showToast(
               text: state.model.message!,
-              state: ToastStates.ERROR,
+              state: ToastStates.error,
             );
-          } else if (state.model.status!){
+          } else if (state.model.status!) {
             showToast(
               text: state.model.message!,
-              state: ToastStates.SUCCESS,
+              state: ToastStates.success,
             );
           }
         }

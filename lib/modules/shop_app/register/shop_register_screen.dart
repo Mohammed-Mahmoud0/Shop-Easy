@@ -10,16 +10,23 @@ import '../../../shared/network/local/cache_helper.dart';
 import 'cubit/cubit.dart';
 import 'cubit/states.dart';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key});
 
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
   var formKey = GlobalKey<FormState>();
+
   var nameController = TextEditingController();
+
   var emailController = TextEditingController();
+
   var passwordController = TextEditingController();
+
   var phoneController = TextEditingController();
-
-
-  RegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +35,7 @@ class RegisterScreen extends StatelessWidget {
       child: BlocConsumer<ShopRegisterCubit, ShopRegisterStates>(
         listener: (context, state) {
           if (state is ShopRegisterSuccessState) {
-            if (state.loginModel!.status!) {
+            if (state.loginModel.status!) {
               print(state.loginModel.message);
               print(state.loginModel.data!.token);
 
@@ -39,15 +46,15 @@ class RegisterScreen extends StatelessWidget {
                 navigateAndFinish(context, ShopLayout());
               });
               showToast(
-                text: state.loginModel!.message!,
-                state: ToastStates.SUCCESS,
+                text: state.loginModel.message!,
+                state: ToastStates.success,
               );
             } else {
               print(state.loginModel.message);
 
               showToast(
                 text: state.loginModel.message!,
-                state: ToastStates.ERROR,
+                state: ToastStates.error,
               );
             }
           }
@@ -68,15 +75,15 @@ class RegisterScreen extends StatelessWidget {
                           'REGISTER',
                           style: Theme.of(context)
                               .textTheme
-                              .headline4!
+                              .bodyLarge!
                               .copyWith(color: Colors.black),
                         ),
                         Text(
                           'Register now to browse our hot offers',
                           style:
-                          Theme.of(context).textTheme.bodyText1!.copyWith(
-                            color: Colors.grey,
-                          ),
+                              Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                    color: Colors.grey,
+                                  ),
                         ),
                         SizedBox(
                           height: 30,
@@ -92,8 +99,8 @@ class RegisterScreen extends StatelessWidget {
                           },
                           label: 'User Name',
                           prefix: Icons.person,
-                          onSubmit: (String value) {  },
-                          onChange: (String value) {  },
+                          onSubmit: (String value) {},
+                          onChange: (String value) {},
                         ),
                         SizedBox(
                           height: 15,
@@ -109,8 +116,8 @@ class RegisterScreen extends StatelessWidget {
                           },
                           label: 'Email Address',
                           prefix: Icons.email_outlined,
-                          onSubmit: (String value) {  },
-                          onChange: (String value) {  },
+                          onSubmit: (String value) {},
+                          onChange: (String value) {},
                         ),
                         SizedBox(
                           height: 15,
@@ -119,9 +126,7 @@ class RegisterScreen extends StatelessWidget {
                           controller: passwordController,
                           type: TextInputType.visiblePassword,
                           suffix: ShopRegisterCubit.get(context).suffix,
-                          onSubmit: (value) {
-
-                          },
+                          onSubmit: (value) {},
                           isPassword: ShopRegisterCubit.get(context).isPassword,
                           suffixPressed: () {
                             ShopRegisterCubit.get(context)
@@ -135,7 +140,7 @@ class RegisterScreen extends StatelessWidget {
                           },
                           label: 'Password',
                           prefix: Icons.lock_outlined,
-                          onChange: (String value) {  },
+                          onChange: (String value) {},
                         ),
                         SizedBox(
                           height: 15,
@@ -151,8 +156,8 @@ class RegisterScreen extends StatelessWidget {
                           },
                           label: 'Phone',
                           prefix: Icons.phone,
-                          onSubmit: (String value) {  },
-                          onChange: (String value) {  },
+                          onSubmit: (String value) {},
+                          onChange: (String value) {},
                         ),
                         SizedBox(
                           height: 30,

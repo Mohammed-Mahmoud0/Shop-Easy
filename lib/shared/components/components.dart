@@ -1,9 +1,5 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace
-
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
 
 Widget defaultButton({
   double width = double.infinity,
@@ -74,7 +70,7 @@ Widget defaultFormField({
                 ),
               )
             : null,
-        border: OutlineInputBorder(),
+        border: const OutlineInputBorder(),
       ),
     );
 
@@ -119,18 +115,18 @@ void showToast({
 }
 
 enum ToastStates {
-  SUCCESS,
-  ERROR,
+  success,
+  error,
   WARNIING,
 }
 
 Color chooseToastColor(ToastStates state) {
   Color color;
   switch (state) {
-    case ToastStates.SUCCESS:
+    case ToastStates.success:
       color = Colors.green;
       break;
-    case ToastStates.ERROR:
+    case ToastStates.error:
       color = Colors.red;
       break;
     case ToastStates.WARNIING:
@@ -139,4 +135,3 @@ Color chooseToastColor(ToastStates state) {
   }
   return color;
 }
-
