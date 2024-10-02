@@ -47,6 +47,7 @@ Widget defaultFormField({
   IconData? suffix,
   VoidCallback? suffixPressed,
   bool isClickable = true,
+  bool readOnly = false,
 }) =>
     TextFormField(
       controller: controller,
@@ -57,6 +58,7 @@ Widget defaultFormField({
       onChanged: onChange,
       onTap: onTap,
       validator: validate,
+      readOnly: readOnly,
       decoration: InputDecoration(
         labelText: label,
         prefixIcon: Icon(
@@ -117,7 +119,7 @@ void showToast({
 enum ToastStates {
   success,
   error,
-  WARNIING,
+  warning,
 }
 
 Color chooseToastColor(ToastStates state) {
@@ -129,7 +131,7 @@ Color chooseToastColor(ToastStates state) {
     case ToastStates.error:
       color = Colors.red;
       break;
-    case ToastStates.WARNIING:
+    case ToastStates.warning:
       color = Colors.amber;
       break;
   }

@@ -1,6 +1,5 @@
 // ignore_for_file: avoid_print
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -30,7 +29,7 @@ class ShopRegisterCubit extends Cubit<ShopRegisterStates> {
         'name': name,
         'email': email,
         'password': password,
-        'phone' : phone,
+        'phone': phone,
       },
     ).then((value) {
       print(value.data);
@@ -46,7 +45,8 @@ class ShopRegisterCubit extends Cubit<ShopRegisterStates> {
 
   void changePasswordVisibility() {
     isPassword = !isPassword;
-    suffix = isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
+    suffix =
+        isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
     emit(ShopChangePasswordVisibilityState());
   }
 }

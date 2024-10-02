@@ -84,7 +84,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
   Widget buildSearchItem(model, context, {bool isOldPrice = true}) => Padding(
         padding: const EdgeInsets.all(20.0),
-        child: Container(
+        child: SizedBox(
           height: 120,
           child: Row(
             children: [
@@ -157,7 +157,6 @@ class _SearchScreenState extends State<SearchScreen> {
                           },
                           icon: CircleAvatar(
                             radius: 15,
-
                             backgroundColor:
                                 (ShopCubit.get(context).favorites![model.id] !=
                                             null &&

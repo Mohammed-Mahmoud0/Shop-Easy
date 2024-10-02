@@ -10,12 +10,15 @@ import '../../../shared/components/components.dart';
 import '../../../shared/components/constants.dart';
 
 class SettingsScreen extends StatelessWidget {
-  var formKey = GlobalKey<FormState>();
-  var nameController = TextEditingController();
-  var emailController = TextEditingController();
-  var phoneController = TextEditingController();
-
   SettingsScreen({super.key});
+
+  var formKey = GlobalKey<FormState>();
+
+  var nameController = TextEditingController();
+
+  var emailController = TextEditingController();
+
+  var phoneController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -23,11 +26,9 @@ class SettingsScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         var model = ShopCubit.get(context).userModel;
-
         nameController.text = model!.data!.name!;
         emailController.text = model.data!.email!;
         phoneController.text = model.data!.phone!;
-
         return ConditionalBuilder(
           condition: ShopCubit.get(context).userModel != null,
           builder: (context) => Padding(
@@ -37,7 +38,7 @@ class SettingsScreen extends StatelessWidget {
               child: Column(
                 children: [
                   if (state is ShopLoadingUpdateUserDataState)
-                  LinearProgressIndicator(),
+                    LinearProgressIndicator(),
                   SizedBox(
                     height: 20,
                   ),
@@ -52,8 +53,8 @@ class SettingsScreen extends StatelessWidget {
                     },
                     label: 'Name',
                     prefix: Icons.person,
-                    onSubmit: (String value) {  },
-                    onChange: (String value) {  },
+                    onSubmit: (String value) {},
+                    onChange: (String value) {},
                   ),
                   SizedBox(
                     height: 20,
@@ -61,6 +62,7 @@ class SettingsScreen extends StatelessWidget {
                   defaultFormField(
                     controller: emailController,
                     type: TextInputType.emailAddress,
+                    readOnly: true,
                     validate: (value) {
                       if (value?.isEmpty == true) {
                         return 'email must not be empty';
@@ -69,8 +71,8 @@ class SettingsScreen extends StatelessWidget {
                     },
                     label: 'Email Address',
                     prefix: Icons.email,
-                    onSubmit: (String value) {  },
-                    onChange: (String value) {  },
+                    onSubmit: (String value) {},
+                    onChange: (String value) {},
                   ),
                   SizedBox(
                     height: 20,
@@ -86,8 +88,8 @@ class SettingsScreen extends StatelessWidget {
                     },
                     label: 'Phone',
                     prefix: Icons.phone,
-                    onSubmit: (String value) {  },
-                    onChange: (String value) {  },
+                    onSubmit: (String value) {},
+                    onChange: (String value) {},
                   ),
                   SizedBox(
                     height: 20,

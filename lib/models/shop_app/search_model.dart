@@ -27,7 +27,7 @@ class Data {
   Data.fromJson(Map<String, dynamic> json) {
     currentPage = json['current_page'];
     if (json['data'] != null) {
-      (json['data'] as List<dynamic>).forEach((element){
+      (json['data'] as List<dynamic>).forEach((element) {
         final dataObject = Product.fromJson(element);
         data.add(dataObject);
       });
@@ -45,8 +45,8 @@ class Data {
 
 class Product {
   int? id;
-  dynamic? price;
-  dynamic? oldPrice;
+  dynamic price;
+  dynamic oldPrice;
   int? discount;
   String? image;
   String? name;

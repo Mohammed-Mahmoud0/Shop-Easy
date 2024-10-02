@@ -1,4 +1,3 @@
-
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
@@ -34,7 +33,7 @@ ThemeData darkTheme = ThemeData(
     backgroundColor: HexColor('333739'),
   ),
   textTheme: TextTheme(
-    bodyText1: TextStyle(
+    bodyLarge: TextStyle(
       fontSize: 18,
       fontWeight: FontWeight.w600,
       color: Colors.white,
@@ -70,7 +69,7 @@ ThemeData lightTheme = ThemeData(
     backgroundColor: Colors.white,
   ),
   textTheme: TextTheme(
-    bodyText1: TextStyle(
+    bodyLarge: TextStyle(
       fontSize: 18,
       fontWeight: FontWeight.w600,
       color: Colors.black,

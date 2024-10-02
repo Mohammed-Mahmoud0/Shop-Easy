@@ -27,7 +27,7 @@ class Data {
   Data.fromJson(Map<String, dynamic> json) {
     currentPage = json['current_page'];
     if (json['data'] != null) {
-      (json['data'] as List<dynamic>).forEach((element){
+      (json['data'] as List<dynamic>).forEach((element) {
         final dataObject = FavoritesData.fromJson(element);
         data.add(dataObject);
       });
@@ -50,14 +50,14 @@ class FavoritesData {
   FavoritesData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     product =
-    (json['product'] != null ? Product.fromJson(json['product']) : null);
+        (json['product'] != null ? Product.fromJson(json['product']) : null);
   }
 }
 
 class Product {
   int? id;
-  dynamic? price;
-  dynamic? oldPrice;
+  dynamic price;
+  dynamic oldPrice;
   int? discount;
   String? image;
   String? name;

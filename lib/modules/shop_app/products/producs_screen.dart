@@ -96,7 +96,7 @@ class ProductsScreen extends StatelessWidget {
                   SizedBox(
                     height: 10,
                   ),
-                  Container(
+                  SizedBox(
                     height: 100,
                     child: ListView.separated(
                       physics: BouncingScrollPhysics(),
@@ -236,8 +236,6 @@ class ProductsScreen extends StatelessWidget {
                       IconButton(
                         onPressed: () {
                           ShopCubit.get(context).changeFavorites(model.id);
-
-                          print("the print of favorite button is ${model.id}");
                         },
                         icon: CircleAvatar(
                           radius: 15,
