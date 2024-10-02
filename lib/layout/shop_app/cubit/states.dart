@@ -1,4 +1,3 @@
-
 import 'package:shop_easy/models/shop_app/change_favorites_model.dart';
 import 'package:shop_easy/models/shop_app/login_model.dart';
 
@@ -17,6 +16,16 @@ class ShopErrorHomeDataState extends ShopStates {}
 class ShopSuccessCategoriesState extends ShopStates {}
 
 class ShopErrorCategoriesState extends ShopStates {}
+
+class ShopAddOrRemoveProductSuccessState extends ShopStates {}
+
+class ShopAddOrRemoveProductErrorState extends ShopStates {}
+
+class ShopAddOrRemoveProductLoadingState extends ShopStates {}
+
+class ShopSuccessFaqsState extends ShopStates {}
+
+class ShopErrorFaqsState extends ShopStates {}
 
 class ShopChangeFavoritesState extends ShopStates {}
 

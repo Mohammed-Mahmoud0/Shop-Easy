@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -32,7 +30,6 @@ class ShopRegisterCubit extends Cubit<ShopRegisterStates> {
         'phone': phone,
       },
     ).then((value) {
-      print(value.data);
       loginModel = ShopLoginModel.fromJson(value.data);
       emit(ShopRegisterSuccessState(loginModel));
     }).catchError((error) {

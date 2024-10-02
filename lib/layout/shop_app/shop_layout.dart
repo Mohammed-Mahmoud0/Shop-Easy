@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_easy/modules/shop_app/search/search_screen.dart';
@@ -7,7 +5,6 @@ import 'package:shop_easy/shared/components/components.dart';
 
 import 'cubit/cubit.dart';
 import 'cubit/states.dart';
-
 
 class ShopLayout extends StatelessWidget {
   const ShopLayout({super.key});
@@ -21,15 +18,15 @@ class ShopLayout extends StatelessWidget {
 
         return Scaffold(
           appBar: AppBar(
-            title: Text(
+            title: const Text(
               'Shop Easy',
             ),
             actions: [
               IconButton(
                 onPressed: () {
-                  navigateTo(context, SearchScreen());
+                  navigateTo(context, const SearchScreen());
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.search,
                 ),
               )
@@ -41,7 +38,7 @@ class ShopLayout extends StatelessWidget {
               cubit.changeBottom(index);
             },
             currentIndex: cubit.currentIndex,
-            items: [
+            items: const [
               BottomNavigationBarItem(
                 icon: Icon(
                   Icons.home,
@@ -50,15 +47,15 @@ class ShopLayout extends StatelessWidget {
               ),
               BottomNavigationBarItem(
                 icon: Icon(
-                  Icons.apps,
-                ),
-                label: 'Categories',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
                   Icons.favorite,
                 ),
                 label: 'Favorites',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.question_answer,
+                ),
+                label: 'Faqs',
               ),
               BottomNavigationBarItem(
                 icon: Icon(

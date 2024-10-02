@@ -1,5 +1,3 @@
-// ignore_for_file: curly_braces_in_flow_control_structures, prefer_const_constructors, prefer_const_constructors_in_immutables
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'layout/shop_app/cubit/cubit.dart';
@@ -24,11 +22,11 @@ void main() async {
   Widget widget;
 
   if (onBoarding == true && token == null) {
-    widget = ShopLoginScreen();
+    widget = const ShopLoginScreen();
   } else if (token != null) {
-    widget = ShopLayout();
+    widget = const ShopLayout();
   } else {
-    widget = OnBoardingScreen();
+    widget = const OnBoardingScreen();
   }
 
   runApp(MyApp(
@@ -48,7 +46,7 @@ class MyApp extends StatelessWidget {
   final bool isDark;
   final Widget startWidget;
 
-  MyApp({super.key, required this.isDark, required this.startWidget});
+  const MyApp({super.key, required this.isDark, required this.startWidget});
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +55,8 @@ class MyApp extends StatelessWidget {
         ..getHomeData()
         ..getCategoriesData()
         ..getFavoritesData()
-        ..getUserData(),
+        ..getUserData()
+        ..getFaqsData(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: lightTheme,

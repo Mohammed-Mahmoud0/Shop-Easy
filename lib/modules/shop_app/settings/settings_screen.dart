@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,9 +7,14 @@ import '../../../layout/shop_app/cubit/states.dart';
 import '../../../shared/components/components.dart';
 import '../../../shared/components/constants.dart';
 
-class SettingsScreen extends StatelessWidget {
-  SettingsScreen({super.key});
+class SettingsScreen extends StatefulWidget {
+  const SettingsScreen({super.key});
 
+  @override
+  State<SettingsScreen> createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
   var formKey = GlobalKey<FormState>();
 
   var nameController = TextEditingController();
@@ -22,8 +25,7 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ShopCubit, ShopStates>(
-      listener: (context, state) {},
+    return BlocBuilder<ShopCubit, ShopStates>(
       builder: (context, state) {
         var model = ShopCubit.get(context).userModel;
         nameController.text = model!.data!.name!;
@@ -38,8 +40,8 @@ class SettingsScreen extends StatelessWidget {
               child: Column(
                 children: [
                   if (state is ShopLoadingUpdateUserDataState)
-                    LinearProgressIndicator(),
-                  SizedBox(
+                    const LinearProgressIndicator(),
+                  const SizedBox(
                     height: 20,
                   ),
                   defaultFormField(
@@ -56,7 +58,7 @@ class SettingsScreen extends StatelessWidget {
                     onSubmit: (String value) {},
                     onChange: (String value) {},
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   defaultFormField(
@@ -74,7 +76,7 @@ class SettingsScreen extends StatelessWidget {
                     onSubmit: (String value) {},
                     onChange: (String value) {},
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   defaultFormField(
@@ -91,11 +93,11 @@ class SettingsScreen extends StatelessWidget {
                     onSubmit: (String value) {},
                     onChange: (String value) {},
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   defaultButton(
-                    background: Color(0xFF1976D2),
+                    background: const Color(0xFF1976D2),
                     function: () {
                       if (formKey.currentState!.validate() == true) {
                         ShopCubit.get(context).updateUserData(
@@ -107,11 +109,11 @@ class SettingsScreen extends StatelessWidget {
                     },
                     text: 'Update',
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   defaultButton(
-                    background: Color(0xFF1976D2),
+                    background: const Color(0xFF1976D2),
                     function: () {
                       signOut(context);
                     },
@@ -121,7 +123,8 @@ class SettingsScreen extends StatelessWidget {
               ),
             ),
           ),
-          fallback: (context) => Center(child: CircularProgressIndicator()),
+          fallback: (context) =>
+              const Center(child: CircularProgressIndicator()),
         );
       },
     );

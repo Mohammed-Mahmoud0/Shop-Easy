@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, avoid_print
-
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,22 +34,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
         listener: (context, state) {
           if (state is ShopRegisterSuccessState) {
             if (state.loginModel.status!) {
-              print(state.loginModel.message);
-              print(state.loginModel.data!.token);
-
               CacheHelper.saveData(
                 key: 'token',
                 value: state.loginModel.data!.token,
               ).then((value) {
-                navigateAndFinish(context, ShopLayout());
+                navigateAndFinish(context, const ShopLayout());
               });
               showToast(
                 text: state.loginModel.message!,
                 state: ToastStates.success,
               );
             } else {
-              print(state.loginModel.message);
-
               showToast(
                 text: state.loginModel.message!,
                 state: ToastStates.error,
@@ -85,7 +78,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     color: Colors.grey,
                                   ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
                         defaultFormField(
@@ -102,7 +95,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           onSubmit: (String value) {},
                           onChange: (String value) {},
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 15,
                         ),
                         defaultFormField(
@@ -119,7 +112,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           onSubmit: (String value) {},
                           onChange: (String value) {},
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 15,
                         ),
                         defaultFormField(
@@ -142,7 +135,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           prefix: Icons.lock_outlined,
                           onChange: (String value) {},
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 15,
                         ),
                         defaultFormField(
@@ -159,7 +152,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           onSubmit: (String value) {},
                           onChange: (String value) {},
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
                         ConditionalBuilder(
@@ -179,7 +172,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             isUpperCase: true,
                           ),
                           fallback: (context) =>
-                              Center(child: CircularProgressIndicator()),
+                              const Center(child: CircularProgressIndicator()),
                         ),
                       ],
                     ),

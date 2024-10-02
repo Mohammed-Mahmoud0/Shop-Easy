@@ -1,3 +1,5 @@
+import 'package:shop_easy/models/shop_app/banner_model.dart';
+import 'package:shop_easy/models/shop_app/product_model.dart';
 
 class HomeModel {
   late bool status;
@@ -14,50 +16,11 @@ class HomeDataModel {
   List<ProductModel> products = [];
 
   HomeDataModel.fromJson(Map<String, dynamic> json) {
-    // json['banners'].forEach((element) {
-    //   banners.add(element);
-    // });
-    // json['products'].forEach((element) {
-    //   products.add(element);
-    // });
-
-    // Initialize banners and products as empty lists.
     banners = (json['banners'] as List<dynamic>)
         .map((element) => BannerModel.fromJson(element))
         .toList();
     products = (json['products'] as List<dynamic>)
         .map((element) => ProductModel.fromJson(element))
         .toList();
-  }
-}
-
-class BannerModel {
-  late int id;
-  late String image;
-  BannerModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    image = json['image'];
-  }
-}
-
-class ProductModel {
-  late int id;
-  late dynamic price;
-  late dynamic oldPrice;
-  late dynamic discount;
-  late String image;
-  late String name;
-  late bool inFavorites;
-  late bool inCart;
-
-  ProductModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    price = json['price'];
-    oldPrice = json['old_price'];
-    discount = json['discount'];
-    image = json['image'];
-    name = json['name'];
-    inFavorites = json['in_favorites'];
-    inCart = json['in_cart'];
   }
 }

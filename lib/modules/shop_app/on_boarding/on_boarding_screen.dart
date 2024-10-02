@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_string_interpolations, curly_braces_in_flow_control_structures, prefer_const_constructors_in_immutables
-
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -21,7 +19,7 @@ class BoardingModel {
 }
 
 class OnBoardingScreen extends StatefulWidget {
-  OnBoardingScreen({super.key});
+  const OnBoardingScreen({super.key});
 
   @override
   State<OnBoardingScreen> createState() => _OnBoardingScreenState();
@@ -54,7 +52,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       if (value) {
         navigateAndFinish(
           context,
-          ShopLoginScreen(),
+          const ShopLoginScreen(),
         );
       }
     });
@@ -69,7 +67,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             onPressed: () {
               submit();
             },
-            child: Text(
+            child: const Text(
               'Skip',
             ),
           ),
@@ -81,7 +79,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           children: [
             Expanded(
               child: PageView.builder(
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 controller: boardController,
                 onPageChanged: (int index) {
                   if (index == boarding.length - 1) {
@@ -99,7 +97,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 itemCount: boarding.length,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             Row(
@@ -107,7 +105,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 SmoothPageIndicator(
                   controller: boardController,
                   count: boarding.length,
-                  effect: ExpandingDotsEffect(
+                  effect: const ExpandingDotsEffect(
                     dotColor: Colors.grey,
                     activeDotColor: defaultColor,
                     dotHeight: 10,
@@ -116,21 +114,21 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     spacing: 5,
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 FloatingActionButton(
                   onPressed: () {
                     if (isLast) {
                       submit();
                     } else {
                       boardController.nextPage(
-                        duration: Duration(
+                        duration: const Duration(
                           milliseconds: 750,
                         ),
                         curve: Curves.fastLinearToSlowEaseIn,
                       );
                     }
                   },
-                  child: Icon(
+                  child: const Icon(
                     Icons.arrow_forward_ios,
                   ),
                 )
@@ -147,30 +145,30 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         children: [
           Expanded(
             child: Image(
-              image: AssetImage('${model.image}'),
+              image: AssetImage(model.image),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           Text(
-            '${model.title}',
-            style: TextStyle(
+            model.title,
+            style: const TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           Text(
-            '${model.body}',
-            style: TextStyle(
+            model.body,
+            style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
         ],

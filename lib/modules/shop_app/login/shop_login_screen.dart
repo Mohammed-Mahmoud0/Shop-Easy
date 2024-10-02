@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_print
-
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,9 +31,6 @@ class _ShopLoginScreenState extends State<ShopLoginScreen> {
         listener: (context, state) {
           if (state is ShopLoginSuccessState) {
             if (state.loginModel.status!) {
-              print(state.loginModel.message);
-              print('login token is : ${state.loginModel.data!.token}');
-
               CacheHelper.saveData(
                 key: 'token',
                 value: state.loginModel.data!.token,
@@ -43,7 +38,7 @@ class _ShopLoginScreenState extends State<ShopLoginScreen> {
                 token = state.loginModel.data!.token!;
                 navigateAndFinish(
                   context,
-                  ShopLayout(),
+                  const ShopLayout(),
                 );
               });
               showToast(
@@ -51,7 +46,6 @@ class _ShopLoginScreenState extends State<ShopLoginScreen> {
                 state: ToastStates.success,
               );
             } else {
-              print(state.loginModel.message!);
               showToast(
                 text: state.loginModel.message!,
                 state: ToastStates.error,
@@ -90,7 +84,7 @@ class _ShopLoginScreenState extends State<ShopLoginScreen> {
                                     color: Colors.grey,
                                   ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
                         defaultFormField(
@@ -107,7 +101,7 @@ class _ShopLoginScreenState extends State<ShopLoginScreen> {
                           onChange: (value) {},
                           onSubmit: (value) {},
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 15,
                         ),
                         defaultFormField(
@@ -137,7 +131,7 @@ class _ShopLoginScreenState extends State<ShopLoginScreen> {
                           label: 'Password',
                           prefix: Icons.lock_outlined,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
                         ConditionalBuilder(
@@ -155,17 +149,17 @@ class _ShopLoginScreenState extends State<ShopLoginScreen> {
                             isUpperCase: true,
                           ),
                           fallback: (context) =>
-                              Center(child: CircularProgressIndicator()),
+                              const Center(child: CircularProgressIndicator()),
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text("Don't have an account?"),
+                            const Text("Don't have an account?"),
                             TextButton(
                               onPressed: () {
-                                navigateTo(context, RegisterScreen());
+                                navigateTo(context, const RegisterScreen());
                               },
-                              child: Text(
+                              child: const Text(
                                 'Register',
                               ),
                             ),

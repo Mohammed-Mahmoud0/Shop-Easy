@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_const_constructors_in_immutables
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,7 +8,7 @@ import 'cubit/cubit.dart';
 import 'cubit/states.dart';
 
 class SearchScreen extends StatefulWidget {
-  SearchScreen({super.key});
+  const SearchScreen({super.key});
 
   @override
   State<SearchScreen> createState() => _SearchScreenState();
@@ -25,8 +23,7 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (BuildContext context) => SearchCubit(),
-      child: BlocConsumer<SearchCubit, SearchStates>(
-        listener: (context, state) {},
+      child: BlocBuilder<SearchCubit, SearchStates>(
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(),
@@ -52,17 +49,18 @@ class _SearchScreenState extends State<SearchScreen> {
                       label: 'Search',
                       prefix: Icons.search,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
-                    if (state is SearchLoadingState) LinearProgressIndicator(),
-                    SizedBox(
+                    if (state is SearchLoadingState)
+                      const LinearProgressIndicator(),
+                    const SizedBox(
                       height: 10,
                     ),
                     if (state is SearchSuccessState)
                       Expanded(
                         child: ListView.separated(
-                          physics: BouncingScrollPhysics(),
+                          physics: const BouncingScrollPhysics(),
                           itemBuilder: (context, index) => buildSearchItem(
                               SearchCubit.get(context).model!.data!.data[index],
                               context,
@@ -99,8 +97,8 @@ class _SearchScreenState extends State<SearchScreen> {
                   if (model.discount != 0 && isOldPrice)
                     Container(
                       color: Colors.red,
-                      padding: EdgeInsets.symmetric(horizontal: 5),
-                      child: Text(
+                      padding: const EdgeInsets.symmetric(horizontal: 5),
+                      child: const Text(
                         'Discount',
                         style: TextStyle(
                           fontSize: 8,
@@ -110,7 +108,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 width: 20,
               ),
               Expanded(
@@ -121,34 +119,34 @@ class _SearchScreenState extends State<SearchScreen> {
                       model.name!,
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 14,
                         height: 1.3,
                       ),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Row(
                       children: [
                         Text(
                           model.price.toString(),
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 12,
                             color: defaultColor,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 5,
                         ),
                         if (model.discount != 0 && isOldPrice)
                           Text(
                             model.oldPrice.toString(),
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 10,
                               color: Colors.grey,
                               decoration: TextDecoration.lineThrough,
                             ),
                           ),
-                        Spacer(),
+                        const Spacer(),
                         IconButton(
                           onPressed: () {
                             setState(() {
@@ -164,7 +162,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                             .favorites![model.id]!)
                                     ? defaultColor
                                     : Colors.grey,
-                            child: Icon(
+                            child: const Icon(
                               Icons.favorite_border,
                               size: 14,
                               color: Colors.white,
