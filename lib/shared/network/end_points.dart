@@ -10,3 +10,4 @@ const PROFILE = 'profile';
 const UPDATE_PROFILE = 'update-profile';
 const SEARCH = 'products/search';
 const FAQS = 'faqs';
+const CHANGEPASSWORD = 'change-password';

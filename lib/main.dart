@@ -56,7 +56,8 @@ class MyApp extends StatelessWidget {
         ..getCategoriesData()
         ..getFavoritesData()
         ..getUserData()
-        ..getFaqsData(),
+        ..getFaqsData()
+        ..getCartsData(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: lightTheme,

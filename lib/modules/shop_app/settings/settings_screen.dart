@@ -1,6 +1,7 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_easy/modules/shop_app/change_password/change_password_screen.dart';
 
 import '../../../layout/shop_app/cubit/cubit.dart';
 import '../../../layout/shop_app/cubit/states.dart';
@@ -108,6 +109,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       }
                     },
                     text: 'Update',
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  defaultButton(
+                    background: const Color(0xFF1976D2),
+                    function: () {
+                      navigateTo(context, ChangePasswordScreen());
+                    },
+                    text: 'Change Password',
                   ),
                   const SizedBox(
                     height: 20,

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_easy/models/shop_app/cart_model.dart';
 import 'package:shop_easy/models/shop_app/faqs_model.dart';
+import 'package:shop_easy/modules/shop_app/carts/carts_screen.dart';
 import 'package:shop_easy/modules/shop_app/faqs/faqs_screen.dart';
 import 'package:shop_easy/modules/shop_app/favorites/favorites_screen.dart';
 import 'package:shop_easy/modules/shop_app/home/home_screen.dart';
@@ -26,6 +28,7 @@ class ShopCubit extends Cubit<ShopStates> {
   List<Widget> bottomScreens = [
     const HomeScreen(),
     const FavoritesScreen(),
+    const CartsScreen(),
     const FaqsScreen(),
     const SettingsScreen(),
   ];
@@ -101,6 +104,43 @@ class ShopCubit extends Cubit<ShopStates> {
     });
   }
 
+  CartsModel? cartsModel;
+
+  void getCartsData() {
+    DioHelper.getData(
+      url: CARTS,
+      token: token,
+    ).then((value) {
+      cartsModel = CartsModel.fromJson(value.data);
+      emit(ShopSuccessCartsState());
+    }).catchError((error) {
+      emit(ShopErrorCartsState());
+    });
+  }
+
+  void clearAllCartItems() {
+    for (var item in cartsModel!.data!.cartItems!) {
+      addOrRemoveProductFromCart(id: item.product!.id!);
+    }
+    for (var item in homeModel!.data.products) {
+      if (item.inCart == true) {
+        item.inCart = false;
+      }
+    }
+    emit(ShopSuccessAllClearCartItems());
+  }
+
+  void clearCartItem({required int id}) {
+    emit(ShopLoadingClearCartItem());
+    addOrRemoveProductFromCart(id: id);
+    for (var item in homeModel!.data.products) {
+      if (item.id == id) {
+        item.inCart = false;
+      }
+    }
+    emit(ShopSuccessClearCartItem());
+  }
+
   ChangeFavoritesModel? changeFavoritesModel;
 
   void changeFavorites(int productId) {
@@ -122,11 +162,9 @@ class ShopCubit extends Cubit<ShopStates> {
       } else {
         getFavoritesData();
       }
-
       emit(ShopSuccessChangeFavoritesState(changeFavoritesModel!));
     }).catchError((error) {
       favorites![productId] = !favorites![productId]!;
-
       emit(ShopErrorChangeFavoritesState());
     });
   }
@@ -141,8 +179,6 @@ class ShopCubit extends Cubit<ShopStates> {
       token: token,
     ).then((value) {
       favoritesModel = FavoritesModel.fromJson(value.data);
-      // printFullText(value.data.toString());
-
       emit(ShopSuccessGetFavoritesState());
     }).catchError((error) {
       emit(ShopErrorGetFavoritesState());
@@ -186,6 +222,25 @@ class ShopCubit extends Cubit<ShopStates> {
       emit(ShopSuccessUpdateUserDataState(userModel!));
     }).catchError((error) {
       emit(ShopErrorUpdateUserDataState());
+    });
+  }
+
+  void changePassword(
+      {required String userCurrentPassword, required String newPassword}) {
+    emit(ShopChangePasswordLoadingState());
+    DioHelper.postData(
+      url: CHANGEPASSWORD,
+      data: {
+        'current_password': userCurrentPassword,
+        'new_password': newPassword,
+      },
+      token: token,
+    ).then((value) {
+      CacheHelper.saveData(key: 'current_password', value: newPassword);
+      currentPassword = CacheHelper.getData(key: "current_password");
+      emit(ShopChangePasswordSuccessState());
+    }).catchError((error) {
+      emit(ShopChangePasswordWithErrorState());
     });
   }
 }

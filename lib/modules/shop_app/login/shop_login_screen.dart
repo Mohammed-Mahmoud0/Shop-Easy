@@ -36,6 +36,10 @@ class _ShopLoginScreenState extends State<ShopLoginScreen> {
                 value: state.loginModel.data!.token,
               ).then((value) {
                 token = state.loginModel.data!.token!;
+                CacheHelper.saveData(
+                  key: 'current_password',
+                  value: passwordController.text,
+                );
                 navigateAndFinish(
                   context,
                   const ShopLayout(),

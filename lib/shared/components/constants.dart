@@ -12,3 +12,4 @@ void signOut(context) {
 
 // String token = 'uzNP5lX7nph6sg8WeqtobGazA6yRiwQEDz14EGvvkatPrkAicX7S49hlbhZ3jUQm34a93k';
 String token = CacheHelper.getData(key: 'token');
+String currentPassword = CacheHelper.getData(key: 'current_password');

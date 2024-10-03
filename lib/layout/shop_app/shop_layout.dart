@@ -12,7 +12,11 @@ class ShopLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ShopCubit, ShopStates>(
-      listener: (context, index) {},
+      listener: (context, state) {
+        if (state is ShopAddOrRemoveProductSuccessState) {
+          ShopCubit.get(context).getCartsData();
+        }
+      },
       builder: (context, index) {
         var cubit = ShopCubit.get(context);
 
@@ -50,6 +54,12 @@ class ShopLayout extends StatelessWidget {
                   Icons.favorite,
                 ),
                 label: 'Favorites',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.shopping_cart,
+                ),
+                label: 'Carts',
               ),
               BottomNavigationBarItem(
                 icon: Icon(

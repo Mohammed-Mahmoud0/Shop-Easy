@@ -27,6 +27,10 @@ class ShopSuccessFaqsState extends ShopStates {}
 
 class ShopErrorFaqsState extends ShopStates {}
 
+class ShopSuccessCartsState extends ShopStates {}
+
+class ShopErrorCartsState extends ShopStates {}
+
 class ShopChangeFavoritesState extends ShopStates {}
 
 class ShopSuccessChangeFavoritesState extends ShopStates {
@@ -62,3 +66,19 @@ class ShopSuccessUpdateUserDataState extends ShopStates {
 }
 
 class ShopErrorUpdateUserDataState extends ShopStates {}
+
+class ShopChangeQuantityOfCartItem extends ShopStates {}
+
+class ShopChangeTotalOfCartItems extends ShopStates {}
+
+class ShopSuccessAllClearCartItems extends ShopStates {}
+
+class ShopLoadingClearCartItem extends ShopStates {}
+
+class ShopSuccessClearCartItem extends ShopStates {}
+
+class ShopChangePasswordLoadingState extends ShopStates {}
+
+class ShopChangePasswordSuccessState extends ShopStates {}
+
+class ShopChangePasswordWithErrorState extends ShopStates {}

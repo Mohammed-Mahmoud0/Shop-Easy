@@ -10,7 +10,6 @@ import '../../../layout/shop_app/cubit/cubit.dart';
 import '../../../layout/shop_app/cubit/states.dart';
 import '../../../models/shop_app/categories_model.dart';
 import '../../../models/shop_app/home_model.dart';
-import '../../../shared/components/components.dart';
 import '../../../shared/styles/colors.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -18,22 +17,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ShopCubit, ShopStates>(
-      listener: (context, state) {
-        if (state is ShopSuccessChangeFavoritesState) {
-          if (!state.model.status!) {
-            showToast(
-              text: state.model.message!,
-              state: ToastStates.error,
-            );
-          } else if (state.model.status!) {
-            showToast(
-              text: state.model.message!,
-              state: ToastStates.success,
-            );
-          }
-        }
-      },
+    return BlocBuilder<ShopCubit, ShopStates>(
       builder: (context, state) {
         return ConditionalBuilder(
           condition: ShopCubit.get(context).homeModel != null &&

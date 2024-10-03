@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_easy/modules/shop_app/product/product_search_screen.dart';
 
 import '../../../layout/shop_app/cubit/cubit.dart';
 import '../../../shared/components/components.dart';
@@ -63,8 +65,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           physics: const BouncingScrollPhysics(),
                           itemBuilder: (context, index) => buildSearchItem(
                               SearchCubit.get(context).model!.data!.data[index],
-                              context,
-                              isOldPrice: false),
+                              context),
                           separatorBuilder: (context, index) => myDivider(),
                           itemCount:
                               SearchCubit.get(context).model!.data!.data.length,
@@ -80,101 +81,99 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
-  Widget buildSearchItem(model, context, {bool isOldPrice = true}) => Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: SizedBox(
-          height: 120,
-          child: Row(
-            children: [
-              Stack(
-                alignment: AlignmentDirectional.bottomStart,
-                children: [
-                  Image(
-                    image: NetworkImage(model.image),
-                    width: 120,
-                    height: 120,
-                  ),
-                  if (model.discount != 0 && isOldPrice)
-                    Container(
-                      color: Colors.red,
-                      padding: const EdgeInsets.symmetric(horizontal: 5),
-                      child: const Text(
-                        'Discount',
-                        style: TextStyle(
-                          fontSize: 8,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                ],
+  Widget buildSearchItem(model, context) => GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ProductSearchScreen(
+                product: model,
               ),
-              const SizedBox(
-                width: 20,
-              ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+            ),
+          );
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: SizedBox(
+            height: 120,
+            child: Row(
+              children: [
+                Stack(
+                  alignment: AlignmentDirectional.bottomStart,
                   children: [
-                    Text(
-                      model.name!,
-                      maxLines: 3,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        fontSize: 14,
-                        height: 1.3,
-                      ),
-                    ),
-                    const Spacer(),
-                    Row(
-                      children: [
-                        Text(
-                          model.price.toString(),
-                          style: const TextStyle(
-                            fontSize: 12,
-                            color: defaultColor,
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        if (model.discount != 0 && isOldPrice)
-                          Text(
-                            model.oldPrice.toString(),
-                            style: const TextStyle(
-                              fontSize: 10,
-                              color: Colors.grey,
-                              decoration: TextDecoration.lineThrough,
-                            ),
-                          ),
-                        const Spacer(),
-                        IconButton(
-                          onPressed: () {
-                            setState(() {
-                              ShopCubit.get(context).changeFavorites(model.id!);
-                            });
-                          },
-                          icon: CircleAvatar(
-                            radius: 15,
-                            backgroundColor:
-                                (ShopCubit.get(context).favorites![model.id] !=
-                                            null &&
-                                        ShopCubit.get(context)
-                                            .favorites![model.id]!)
-                                    ? defaultColor
-                                    : Colors.grey,
-                            child: const Icon(
-                              Icons.favorite_border,
-                              size: 14,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ],
+                    CachedNetworkImage(
+                      imageUrl: model.image,
+                      height: 120.0,
+                      width: 120.0,
+                      fit: BoxFit.cover,
+                      placeholder: (context, url) => const Center(
+                          child:
+                              CircularProgressIndicator()), // Shows while loading
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error), // Shows if there is an error
                     ),
                   ],
                 ),
-              ),
-            ],
+                const SizedBox(
+                  width: 20,
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        model.name!,
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          fontSize: 14,
+                          height: 1.3,
+                        ),
+                      ),
+                      const Spacer(),
+                      Row(
+                        children: [
+                          Text(
+                            model.price.toString(),
+                            style: const TextStyle(
+                              fontSize: 12,
+                              color: defaultColor,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          const Spacer(),
+                          IconButton(
+                            onPressed: () {
+                              setState(() {
+                                ShopCubit.get(context)
+                                    .changeFavorites(model.id!);
+                              });
+                            },
+                            icon: CircleAvatar(
+                              radius: 15,
+                              backgroundColor: (ShopCubit.get(context)
+                                              .favorites![model.id] !=
+                                          null &&
+                                      ShopCubit.get(context)
+                                          .favorites![model.id]!)
+                                  ? defaultColor
+                                  : Colors.grey,
+                              child: const Icon(
+                                Icons.favorite_border,
+                                size: 14,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       );

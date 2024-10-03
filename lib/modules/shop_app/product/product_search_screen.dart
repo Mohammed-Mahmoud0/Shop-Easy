@@ -3,14 +3,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_easy/layout/shop_app/cubit/cubit.dart';
 import 'package:shop_easy/layout/shop_app/cubit/states.dart';
-import 'package:shop_easy/models/shop_app/product_model.dart';
+import 'package:shop_easy/models/shop_app/search_model.dart';
 import 'package:shop_easy/shared/components/components.dart';
 import 'package:shop_easy/shared/styles/colors.dart';
 
-class ProductScreen extends StatelessWidget {
-  final ProductModel product;
+class ProductSearchScreen extends StatelessWidget {
+  final Product product;
 
-  const ProductScreen({super.key, required this.product});
+  const ProductSearchScreen({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class ProductScreen extends StatelessWidget {
                 // Cached Network Image
                 Center(
                   child: CachedNetworkImage(
-                    imageUrl: product.image,
+                    imageUrl: product.image!,
                     fit: BoxFit.cover,
                     placeholder: (context, url) => const Center(
                         child:
@@ -46,7 +46,7 @@ class ProductScreen extends StatelessWidget {
                 const SizedBox(height: 20.0),
                 // Product Name
                 Text(
-                  product.name,
+                  product.name!,
                   style: const TextStyle(
                     fontSize: 24.0,
                     fontWeight: FontWeight.bold,
@@ -56,7 +56,7 @@ class ProductScreen extends StatelessWidget {
 
 // Product Description
                 Text(
-                  product.description, // Add the description field here
+                  product.description!, // Add the description field here
                   style: const TextStyle(
                     fontSize: 16.0,
                     color: Colors.grey,
@@ -65,36 +65,13 @@ class ProductScreen extends StatelessWidget {
                 const SizedBox(height: 20.0),
 
                 // Product Price and Discount
-                Row(
-                  children: [
-                    Text(
-                      '\$${product.price}',
-                      style: const TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
-                        color: defaultColor,
-                      ),
-                    ),
-                    const SizedBox(width: 10.0),
-                    if (product.discount > 0)
-                      Text(
-                        '\$${product.oldPrice}',
-                        style: const TextStyle(
-                          fontSize: 16.0,
-                          decoration: TextDecoration.lineThrough,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    const SizedBox(width: 10.0),
-                    if (product.discount > 0)
-                      Text(
-                        '${product.discount}% OFF',
-                        style: const TextStyle(
-                          fontSize: 16.0,
-                          color: Colors.orange,
-                        ),
-                      ),
-                  ],
+                Text(
+                  '\$${product.price}',
+                  style: const TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                    color: defaultColor,
+                  ),
                 ),
                 const SizedBox(height: 20.0),
 
@@ -103,7 +80,7 @@ class ProductScreen extends StatelessWidget {
                   children: [
                     IconButton(
                       onPressed: () {
-                        ShopCubit.get(context).changeFavorites(product.id);
+                        ShopCubit.get(context).changeFavorites(product.id!);
                       },
                       icon: CircleAvatar(
                         radius: 15,
@@ -122,7 +99,7 @@ class ProductScreen extends StatelessWidget {
                     CircleAvatar(
                       radius: 20,
                       backgroundColor:
-                          product.inCart ? Colors.green : Colors.grey,
+                          product.inCart! ? Colors.green : Colors.grey,
                       child: const Icon(
                         Icons.shopping_cart,
                         size: 14,
@@ -135,11 +112,12 @@ class ProductScreen extends StatelessWidget {
                 const SizedBox(height: 20.0),
                 state is! ShopAddOrRemoveProductLoadingState
                     ? defaultButton(
-                        text:
-                            product.inCart ? 'Remove from cart' : 'Add to cart',
+                        text: product.inCart!
+                            ? 'Remove from cart'
+                            : 'Add to cart',
                         function: () {
-                          cubit.addOrRemoveProductFromCart(id: product.id);
-                          product.inCart = !product.inCart;
+                          cubit.addOrRemoveProductFromCart(id: product.id!);
+                          product.inCart = !product.inCart!;
                         },
                       )
                     : Container(
