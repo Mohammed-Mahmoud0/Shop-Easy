@@ -16,15 +16,11 @@ class CartsScreen extends StatefulWidget {
 }
 
 class _CartsScreenState extends State<CartsScreen> {
-  bool isLoadingToClearAllItems = false;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ShopCubit, ShopStates>(
       listener: (context, state) {
         if (state is ShopSuccessAllClearCartItems) {
-          setState(() {
-            isLoadingToClearAllItems = false;
-          });
           showToast(
               text: 'Clear All Items Successfully', state: ToastStates.success);
         }
@@ -68,24 +64,11 @@ class _CartsScreenState extends State<CartsScreen> {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    isLoadingToClearAllItems
-                        ? Container(
-                            width: double.infinity,
-                            height: 50,
-                            color: defaultColor,
-                            child: const Center(
-                                child: CircularProgressIndicator(
-                              color: Colors.white,
-                            )),
-                          )
-                        : defaultButton(
-                            text: 'Confirm Invoice',
-                            function: () {
-                              setState(() {
-                                isLoadingToClearAllItems = true;
-                              });
-                              ShopCubit.get(context).clearAllCartItems();
-                            }),
+                    defaultButton(
+                        text: 'Confirm Invoice',
+                        function: () {
+                          ShopCubit.get(context).clearAllCartItems();
+                        }),
                   ],
                 ),
               ),
