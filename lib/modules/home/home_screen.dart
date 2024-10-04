@@ -124,7 +124,7 @@ class HomeScreen extends StatelessWidget {
                 crossAxisCount: 2,
                 mainAxisSpacing: 1,
                 crossAxisSpacing: 1,
-                childAspectRatio: 1 / 1.501,
+                childAspectRatio: 1 / 1.8,
                 children: List.generate(
                   model.data.products.length,
                   (index) =>
@@ -222,6 +222,9 @@ class HomeScreen extends StatelessWidget {
                         height: 1.3,
                       ),
                     ),
+                    const SizedBox(
+                      height: 5,
+                    ),
                     Row(
                       children: [
                         Text(
@@ -243,7 +246,6 @@ class HomeScreen extends StatelessWidget {
                               decoration: TextDecoration.lineThrough,
                             ),
                           ),
-                        const Spacer(),
                         IconButton(
                           onPressed: () {
                             ShopCubit.get(context).changeFavorites(model.id);

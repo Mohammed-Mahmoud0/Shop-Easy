@@ -28,7 +28,15 @@ class _SearchScreenState extends State<SearchScreen> {
       child: BlocBuilder<SearchCubit, SearchStates>(
         builder: (context, state) {
           return Scaffold(
-            appBar: AppBar(),
+            appBar: AppBar(
+              leading: IconButton(
+                icon: const Icon(Icons.arrow_back_ios),
+                onPressed: () {
+                  Navigator.pop(
+                      context); // Navigate back to the previous screen
+                },
+              ),
+            ),
             body: Form(
               key: formKey,
               child: Padding(

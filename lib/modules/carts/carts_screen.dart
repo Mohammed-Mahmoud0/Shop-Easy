@@ -6,7 +6,6 @@ import 'package:shop_easy/layout/cubit/cubit.dart';
 import 'package:shop_easy/layout/cubit/states.dart';
 import 'package:shop_easy/models/cart_model.dart';
 import 'package:shop_easy/shared/components/components.dart';
-import 'package:shop_easy/shared/styles/colors.dart';
 
 class CartsScreen extends StatefulWidget {
   const CartsScreen({super.key});
@@ -23,6 +22,10 @@ class _CartsScreenState extends State<CartsScreen> {
         if (state is ShopSuccessAllClearCartItems) {
           showToast(
               text: 'Clear All Items Successfully', state: ToastStates.success);
+        }
+        if (state is ShopSuccessClearCartItem) {
+          showToast(
+              text: 'Clear Cart Item Successfully', state: ToastStates.success);
         }
       },
       builder: (context, state) {

@@ -58,8 +58,6 @@ class ShopCubit extends Cubit<ShopStates> {
   }
 
   void getHomeData() {
-    emit(ShopLoadingHomeDataState());
-
     DioHelper.getData(
       url: HOME,
       token: CacheHelper.getData(key: 'token'),
@@ -131,7 +129,6 @@ class ShopCubit extends Cubit<ShopStates> {
   }
 
   void clearCartItem({required int id}) {
-    emit(ShopLoadingClearCartItem());
     addOrRemoveProductFromCart(id: id);
     for (var item in homeModel!.data.products) {
       if (item.id == id) {

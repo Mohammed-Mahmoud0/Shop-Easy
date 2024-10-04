@@ -7,8 +7,6 @@ class ShopInitialState extends ShopStates {}
 
 class ShopChangeBottomNavState extends ShopStates {}
 
-class ShopLoadingHomeDataState extends ShopStates {}
-
 class ShopSuccessHomeDataState extends ShopStates {}
 
 class ShopErrorHomeDataState extends ShopStates {}
@@ -72,8 +70,6 @@ class ShopChangeQuantityOfCartItem extends ShopStates {}
 class ShopChangeTotalOfCartItems extends ShopStates {}
 
 class ShopSuccessAllClearCartItems extends ShopStates {}
-
-class ShopLoadingClearCartItem extends ShopStates {}
 
 class ShopSuccessClearCartItem extends ShopStates {}
 

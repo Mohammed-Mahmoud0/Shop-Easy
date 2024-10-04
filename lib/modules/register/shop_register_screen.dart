@@ -1,8 +1,8 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_easy/modules/login/shop_login_screen.dart';
 
-import '../../layout/shop_layout.dart';
 import '../../shared/components/components.dart';
 import '../../shared/network/local/cache_helper.dart';
 import 'cubit/cubit.dart';
@@ -38,7 +38,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 key: 'token',
                 value: state.loginModel.data!.token,
               ).then((value) {
-                navigateAndFinish(context, const ShopLayout());
+                navigateAndFinish(context, const ShopLoginScreen());
               });
               showToast(
                 text: 'Register Successfully',
@@ -46,7 +46,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               );
             } else {
               showToast(
-                text: state.loginModel.message!,
+                text: 'Register Failed',
                 state: ToastStates.error,
               );
             }
