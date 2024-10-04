@@ -51,27 +51,29 @@ flutter build apk --split-per-abi
 
 ## Screenshots
 
-![Login Screen](assets/screenshots/benz1.png)
+![Login Screen](assets/screenshots/login_screen.jpg)
 
-![Change Password Screen](assets/screenshots/benz2.png)
+![Register Screen](assets/screenshots/register_screen.jpg)
 
-![Home Screen](assets/screenshots/benz3.png)
+![Home Screen1](assets/screenshots/home_screen1.jpg)
 
-![Search for a Car Screen](assets/screenshots/benz8.png)
+![Home Screen2](assets/screenshots/home_screen2.jpg)
 
-![Add and Update Car Screen](assets/screenshots/benz7.png)
+![Favorites Screen](assets/screenshots/favorites_screen.jpg)
 
-![Add Service Screen](assets/screenshots/benz4.png)
+![Carts Screen](assets/screenshots/carts_screen.jpg)
 
-![Add Dismissed Screen](assets/screenshots/benz10.png)
+![Faqs Screen](assets/screenshots/faqs_screen.jpg)
 
-![Show Services Screen](assets/screenshots/benz9.png)
+![Settings Screen](assets/screenshots/settings_screen.jpg)
 
-![Show Dismissals Screen](assets/screenshots/benz11.png)
+![Product Details Screen](assets/screenshots/product_details_screen.jpg)
 
-![Comment Screen](assets/screenshots/benz5.png)
+![Search Screen](assets/screenshots/search_screen.jpg)
 
-![PDF](assets/screenshots/benz6.png)
+![Change Password Screen](assets/screenshots/change_password_screen.jpg)
+
+
 
 
 
