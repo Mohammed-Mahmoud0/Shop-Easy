@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'layout/shop_app/cubit/cubit.dart';
-import 'layout/shop_app/shop_layout.dart';
-import 'modules/shop_app/login/shop_login_screen.dart';
-import 'modules/shop_app/on_boarding/on_boarding_screen.dart';
+import 'layout/cubit/cubit.dart';
+import 'layout/shop_layout.dart';
+import 'modules/login/shop_login_screen.dart';
+import 'modules/on_boarding/on_boarding_screen.dart';
 import 'shared/bloc_observer.dart';
 import 'shared/network/local/cache_helper.dart';
 import 'shared/network/remote/dio_helper.dart';
