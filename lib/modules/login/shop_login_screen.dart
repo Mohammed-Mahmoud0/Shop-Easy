@@ -51,13 +51,13 @@ class _ShopLoginScreenState extends State<ShopLoginScreen> {
               );
             } else {
               showToast(
-                text: state.loginModel.message!,
+                text: 'Failed',
                 state: ToastStates.error,
               );
             }
           } else if (state is ShopLoginErrorState) {
             showToast(
-              text: 'Incorrect Email or Password.',
+              text: 'Incorrect Email or Password',
               state: ToastStates.error,
             );
           }
