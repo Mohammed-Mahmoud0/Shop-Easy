@@ -54,7 +54,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
         },
         builder: (context, state) {
           return Scaffold(
-            appBar: AppBar(),
+            appBar: AppBar(
+              leading: IconButton(
+                icon: const Icon(Icons.arrow_back_ios),
+                onPressed: () {
+                  Navigator.pop(
+                      context); // Navigate back to the previous screen
+                },
+              ),
+            ),
             body: Center(
               child: SingleChildScrollView(
                 child: Padding(
